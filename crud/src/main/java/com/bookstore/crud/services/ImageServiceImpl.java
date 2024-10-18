@@ -21,10 +21,13 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public Image uploadImage(MultipartFile file) throws IOException {
+        System.out.println(file.getOriginalFilename());
         Map uploadResult = cloudinaryService.upload(file);
+        System.out.println(uploadResult);
         String imageUrl = (String) uploadResult.get("url");
         String imageId = (String) uploadResult.get("public_id");
         Image image = new Image(file.getOriginalFilename(), imageUrl, imageId);
+
         return imageRepository.save(image);
     }
 
