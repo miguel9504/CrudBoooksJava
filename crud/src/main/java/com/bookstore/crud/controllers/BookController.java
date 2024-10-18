@@ -23,6 +23,7 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<Book> saveBook(@RequestPart("book") Book book, @RequestPart("file")MultipartFile file) {
+        System.out.println("test miguel"+file);
         try {
             Book savedBook = bookServiceImpl.saveBook(book, file);
             return new ResponseEntity<>(savedBook, HttpStatus.OK);
